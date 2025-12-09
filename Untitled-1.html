@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gráfica Express — Impressão profissional</title>
+  <meta name="description" content="Gráfica Express: cartões, panfletos, banners, adesivos e muito mais. Orçamento rápido e atendimento pelo WhatsApp." />
+  <style>
+    :root{--accent:#1d4ed8;--muted:#666;--bg:#f7f9fc;--card:#ffffff}
+    *{box-sizing:border-box}
+    body{font-family:Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;background:var(--bg);color:#111}
+    a{color:var(--accent);text-decoration:none}
+    header{background:linear-gradient(90deg,#061b4a 0%, rgba(29,78,216,0.9) 60%);color:#fff;padding:28px 20px}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .logo{font-weight:700;font-size:20px}
+    nav a{color:rgba(255,255,255,0.95);margin-left:14px;font-weight:600}
+
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-top:28px}
+    .hero h1{font-size:34px;margin:0 0 12px}
+    .hero p{color:rgba(255,255,255,0.95);margin:0 0 18px}
+    .cta{display:flex;gap:12px}
+    .btn{background:#fff;color:var(--accent);padding:12px 16px;border-radius:10px;font-weight:700;border:none;cursor:pointer}
+    .btn.secondary{background:transparent;border:2px solid rgba(255,255,255,0.16);color:#fff}
+
+    .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:0 6px 20px rgba(10,20,40,0.06)}
+    .order-card h3{margin:0 0 8px}
+    .field{display:flex;flex-direction:column;margin-bottom:10px}
+    .field label{font-size:13px;color:var(--muted);margin-bottom:6px}
+    .field input,.field select,.field textarea{padding:10px;border-radius:8px;border:1px solid #e6e9ef;font-size:14px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+
+    main{padding:36px 20px}
+    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+    .service h4{margin:0 0 6px}
+    .service p{margin:0;color:var(--muted);font-size:14px}
+
+    .portfolio{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .thumb{height:160px;border-radius:10px;background:linear-gradient(135deg,#fff,#f3f6fb);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700}
+
+    footer{margin-top:40px;padding:28px 0;color:var(--muted)}
+    .flex{display:flex;gap:18px;align-items:center}
+
+    /* responsive */
+    @media(max-width:980px){.hero{grid-template-columns:1fr} .services{grid-template-columns:repeat(2,1fr)} .portfolio{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:620px){.nav{flex-direction:column;align-items:flex-start}.services{grid-template-columns:1fr}.portfolio{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr}}
+
+    /* tiny helpers */
+    .muted{color:var(--muted)}
+    .pill{background:#eef2ff;padding:6px 10px;border-radius:999px;color:#1e3a8a;font-weight:700;font-size:13px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">Gráfica <span style="color:#fff">Express</span></div>
+      <nav>
+        <a href="#servicos">Serviços</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#precos">Preços</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+    <div class="container hero">
+      <div>
+        <div class="pill">Impressão rápida • Qualidade profissional</div>
+        <h1>Imprima flyers, cartões, banners e muito mais — com entrega rápida</h1>
+        <p>Produção local com acabamento profissional. Ideal para empresas, eventos, escolas e produtores locais. Orçamento online em minutos.</p>
+        <div class="cta">
+          <button class="btn" onclick="scrollToForm()">Pedir Orçamento</button>
+          <a class="btn secondary" href="https://api.whatsapp.com/send?phone=55YOURNUMBER&text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento" target="_blank">Falar no WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="card order-card">
+        <h3>Orçamento rápido</h3>
+        <p class="muted">Preencha e receba um orçamento estimado por e-mail ou WhatsApp.</p>
+        <div style="margin-top:12px">
+          <div class="field">
+            <label>Nome</label>
+            <input id="nome" placeholder="Seu nome" />
+          </div>
+          <div class="field">
+            <label>Serviço</label>
+            <select id="servico">
+              <option>Cartões de visita</option>
+              <option>Panfletos A5</option>
+              <option>Folder A4</option>
+              <option>Banners</option>
+              <option>Adesivos</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <div class="grid-3">
+            <div class="field">
+              <label>Quantidade</label>
+              <input id="qtd" type="number" value="100"/>
+            </div>
+            <div class="field">
+              <label>Papel</label>
+              <select id="papel"><option>Couche 90g</option><option>Couche 150g</option><option>Couche 300g</option><option>Offset</option></select>
+            </div>
+            <div class="field">
+              <label>Prazo (dias)</label>
+              <input id="prazo" type="number" value="3" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Observações</label>
+            <textarea id="obs" rows="3" placeholder="Ex: Frente e verso, laminação fosca"></textarea>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <button class="btn" onclick="calcular()">Calcular</button>
+            <div id="resultado" class="muted" style="font-weight:700"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="servicos">
+      <h2>Serviços</h2>
+      <div class="services">
+        <div class="card service">
+          <h4>Cartões de visita</h4>
+          <p>Impressão frente e verso, corte preciso e laminação opcional.</p>
+        </div>
+        <div class="card service">
+          <h4>Panfletos e Flyers</h4>
+          <p>Pequenas tiragens ou grandes quantidades com ótimos preços.</p>
+        </div>
+        <div class="card service">
+          <h4>Banners e Faixas</h4>
+          <p>Banners em lona com ilhós, com entrega e instalação.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <h2 style="margin-top:22px">Portfólio</h2>
+      <div class="portfolio">
+        <div class="thumb card">Cartões</div>
+        <div class="thumb card">Panfletos</div>
+        <div class="thumb card">Banners</div>
+        <div class="thumb card">Adesivos</div>
+        <div class="thumb card">Embalagens</div>
+        <div class="thumb card">Lonas</div>
+      </div>
+    </section>
+
+    <section id="precos" style="margin-top:28px">
+      <h2>Preços (estimativa)</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:10px">
+        <div class="card"><strong>Cartões</strong><p class="muted">100 un — a partir de R$ 45</p></div>
+        <div class="card"><strong>Panfletos A5</strong><p class="muted">500 un — a partir de R$ 120</p></div>
+        <div class="card"><strong>Banners</strong><p class="muted">1m x 1m — a partir de R$ 80</p></div>
+      </div>
+      <p class="muted" style="margin-top:8px">Preços variam por material, acabamento e prazo. Peça um orçamento exato acima.</p>
+    </section>
+
+    <section id="contato" style="margin-top:28px;display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start">
+      <div>
+        <h2>Fale com a gente</h2>
+        <p class="muted">Atendimento por WhatsApp, e-mail ou presencial. Informações claras e prazos reais.</p>
+
+        <div style="margin-top:12px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+          <div class="card">
+            <strong>WhatsApp</strong>
+            <p class="muted">(xx) 9xxxx-xxxx — clique no botão</p>
+            <p><a href="https://api.whatsapp.com/send?phone=55YOURNUMBER&text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento" target="_blank">Abrir WhatsApp</a></p>
+          </div>
+          <div class="card">
+            <strong>Endereço</strong>
+            <p class="muted">Rua Exemplo, 123 — Centro</p>
+            <p><a href="#">Ver no mapa</a></p>
+          </div>
+        </div>
+
+        <h3 style="margin-top:14px">E-mail</h3>
+        <p class="muted">contato@graficaexemplo.com</p>
+
+      </div>
+
+      <div class="card">
+        <h3>Pedido rápido (offline)</h3>
+        <p class="muted">Baixe o formulário e traga em PDF para agilizar.</p>
+        <ol style="margin-top:8px">
+          <li class="muted">Preencha nome e telefone</li>
+          <li class="muted">Anexe o arquivo em PDF</li>
+          <li class="muted">Escolha papel, acabamento e quantidade</li>
+        </ol>
+        <div style="margin-top:10px;display:flex;gap:10px">
+          <button class="btn" onclick="downloadForm()">Baixar formulário</button>
+          <a class="btn secondary" href="#contato">Enviar por e-mail</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="flex" style="justify-content:space-between;align-items:center">
+        <div class="muted">© <strong>Gráfica Express</strong> — Impressões desde 2010</div>
+        <div class="muted">Feito por <a href="#">Sua Gráfica</a></div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    function calcular(){
+      const serv = document.getElementById('servico').value;
+      const qtd = Number(document.getElementById('qtd').value) || 0;
+      const papel = document.getElementById('papel').value;
+      const prazo = Number(document.getElementById('prazo').value) || 1;
+      let base = 0;
+      if(serv.includes('Cartões')) base = 0.45; // por unidade
+      else if(serv.includes('Panfletos')) base = 0.18;
+      else if(serv.includes('Folder')) base = 0.9;
+      else if(serv.includes('Banners')) base = 65;
+      else if(serv.includes('Adesivos')) base = 0.6;
+      else base = 1.5;
+
+      // ajustar por papel
+      if(papel.includes('150')) base *= 1.2;
+      if(papel.includes('300')) base *= 1.6;
+
+      // prazo rápido aumenta preço
+      if(prazo <= 1) base *= 1.6;
+      else if(prazo <= 2) base *= 1.3;
+
+      let total = 0;
+      if(serv.includes('Banners')) total = base; else total = base * qtd;
+      total = Math.round(total*100)/100;
+      document.getElementById('resultado').innerText = 'R$ ' + total.toFixed(2);
+    }
+
+    function scrollToForm(){
+      document.getElementById('contato').scrollIntoView({behavior:'smooth'});
+    }
+
+    function downloadForm(){
+      const content = Nome:\nTelefone:\nServiço:\nQuantidade:\nPapel:\nPrazo:\nObservações:\n\nAnexar arquivo (PDF);
+      const blob = new Blob([content],{type:'text/plain'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'formulario-pedido.txt';
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
